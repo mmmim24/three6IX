@@ -3,8 +3,8 @@ import React from 'react'
 const Header = () => {
     return (
         <>
-            <div className="flex justify-center items-center p-8 bg-emerald-900">
-                <h1 className="text-3xl text-white font-bold">3 6 9</h1>
+            <div className="flex h-[10vh] justify-center items-center p-8 bg-emerald-900">
+                <p className="lg:text-4xl text-center text-white ">3 6 9</p>
             </div>
         </>
     )
