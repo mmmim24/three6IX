@@ -52,7 +52,7 @@ const GameComponent = () => {
                     currentRound: values.currentRound + 1,
                     isPressed: false,
                 })
-            }, 500 * players);
+            }, 2000);
         }
         return () => clearInterval(interval);
     }, [running, values.currentRound]);
@@ -63,7 +63,7 @@ const GameComponent = () => {
                 <div className='text-sm lg:text-xl text-emerald-900 dark:text-emerald-500 my-2'>
                     {time > 0 ? <p>Game starting with {rounds} rounds and {players} players in {time}</p> : <ScoreComponent values={values} />}
                 </div>
-                <PlayerComponents players={players} rounds={rounds} starter={values.startingPlayer} turn={values.isYourTurn} />
+                <PlayerComponents players={players} />
             </div>
         </>
     )
