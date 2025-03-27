@@ -69,7 +69,7 @@ const GameComponent = () => {
                                 rounds={rounds}
                                 time={time}
                             />
-                            : <ScoreComponent values={values} />
+                            : <ScoreComponent />
                     }
                 </div>
                 <PlayerComponents players={players} />

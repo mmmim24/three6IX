@@ -39,7 +39,7 @@ const GameParams = () => {
                         <div className='flex justify-between items-center gap-2'>
                             <label htmlFor='round' className='text-md lg:text-xl text-emerald-900 dark:text-emerald-500'>Enter rounds</label>
                             <input
-                                type='text'
+                                type='number'
                                 id='round'
                                 min={13}
                                 value={roundsInput}
@@ -50,7 +50,7 @@ const GameParams = () => {
                         <div className='flex justify-between items-center gap-2'>
                             <label htmlFor='player' className='text-md lg:text-xl text-emerald-900 dark:text-emerald-500'>Enter players</label>
                             <input
-                                type='text'
+                                type='number'
                                 id='player'
                                 min={4}
                                 value={playersInput}
