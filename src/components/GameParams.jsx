@@ -2,21 +2,24 @@ import React from 'react'
 import character from '/character369.jpeg'
 import { GameContext } from '../store/GameStore';
 import { validate } from '../utils/validate';
+import HowToPLay from './HowToPLay';
 
 const GameParams = () => {
     const { gameState, updateGameState } = React.useContext(GameContext);
     const [roundsInput, setRoundsInput] = React.useState(gameState.rounds);
     const [playersInput, setPlayersInput] = React.useState(gameState.players);
-    const [error, setError] = React.useState(<div className="h-[50px]"><p></p></div>);
+    const [error, setError] = React.useState(null);
 
     const handleStart = () => {
         const validation = validate(roundsInput, playersInput);
+        const audio = new Audio('/clap.mp3');
         if (validation) {
             updateGameState({
                 rounds: roundsInput,
                 players: playersInput,
                 isStarted: true
             });
+            audio.play();
         } else {
             setError(
                 <div className='h-[50px] text-center'>
@@ -33,7 +36,7 @@ const GameParams = () => {
             <div className='flex flex-col gap-8'>
                 <div className='flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-6 lg:p-6'>
                     <div>
-                        <img src={character} alt='cards' className='border-1 lg:border-2 rounded-lg lg:rounded-xl border-emerald-500 dark:border-stone-300' />
+                        <img src={character} alt='cards' className='border-1 lg:border-2 rounded-lg lg:rounded-xl border-emerald-500' />
                     </div>
                     <div className='border-1 lg:border-2 border-emerald-900 dark:border-emerald-500 p-5 lg:p-7 rounded-lg lg:rounded-xl flex flex-col gap-4 lg:gap-6'>
                         <div className='flex justify-between items-center gap-2'>
@@ -68,7 +71,7 @@ const GameParams = () => {
                 </div >
                 <div>
                     {
-                        error
+                        error !== null ? error : <HowToPLay />
                     }
                 </div>
             </div>

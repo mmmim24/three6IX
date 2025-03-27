@@ -6,6 +6,9 @@ const Modal = ({ isOpen, onClose, score, life }) => {
 
     if (!isOpen) return null;
 
+    const audio = new Audio('/slap.mp3');
+    audio.play();
+
     const { updateGameState } = React.useContext(GameContext);
     function playAgain() {
         onClose();

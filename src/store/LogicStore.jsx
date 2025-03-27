@@ -14,6 +14,24 @@ export const LogicProvider = ({ children }) => {
         isPressed: false,
     });
 
+    function scorePlus() {
+        const audio = new Audio('/shoot.mp3');
+        updateValues({
+            score: values.score + 1,
+            isWrongMove: false
+        });
+        audio.play();
+    }
+
+    function lifeMinus() {
+        const audio = new Audio('/warning.mp3');
+        updateValues({
+            life: values.life - 1,
+            isWrongMove: true
+        });
+        audio.play();
+    }
+
     const updateValues = (newValues) => {
         setValues(prev => ({ ...prev, ...newValues }));
     };
@@ -37,16 +55,10 @@ export const LogicProvider = ({ children }) => {
             else {
 
                 if (flag) {
-                    updateValues({
-                        score: values.score + 1,
-                        isWrongMove: false
-                    });
+                    scorePlus();
                 }
                 else {
-                    updateValues({
-                        life: values.life - 1,
-                        isWrongMove: true
-                    });
+                    lifeMinus();
                 }
             }
             updateValues({
@@ -72,16 +84,10 @@ export const LogicProvider = ({ children }) => {
                 });
             }
             if (flag) {
-                updateValues({
-                    score: values.score + 1,
-                    isWrongMove: false
-                });
+                scorePlus();
             }
             else {
-                updateValues({
-                    life: values.life - 1,
-                    isWrongMove: true
-                });
+                lifeMinus();
             }
             updateValues({
                 isPressed: true
