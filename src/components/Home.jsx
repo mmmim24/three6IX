@@ -9,7 +9,7 @@ const Home = () => {
     return (
 
         <React.Fragment>
-            <div className='min-h-[80vh] flex justify-center items-center lg:p-2'>
+            <div className='min-h-[80vh] flex justify-center items-center lg:p-2 '>
                 {
                     gameState.isStarted ? <LogicProvider> <GameComponent /></LogicProvider> : <GameParams />
                 }

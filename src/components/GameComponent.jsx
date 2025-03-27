@@ -3,12 +3,13 @@ import { GameContext } from '../store/GameStore';
 import { useLogicContext } from '../store/LogicStore';
 import PlayerComponents from './PlayerComponents';
 import ScoreComponent from './ScoreComponent';
+import Whistle from './Whistle';
 
 const GameComponent = () => {
     const game = React.useContext(GameContext);
     const { isStarted, players, rounds } = game.gameState;
     const { values, updateValues, initialPlayer } = useLogicContext();
-    const [time, setTime] = React.useState(3);
+    const [time, setTime] = React.useState(5);
     const [running, setRunning] = React.useState(false);
 
     React.useEffect(() => {
@@ -52,7 +53,7 @@ const GameComponent = () => {
                     currentRound: values.currentRound + 1,
                     isPressed: false,
                 })
-            }, 2000);
+            }, 1000);
         }
         return () => clearInterval(interval);
     }, [running, values.currentRound]);
@@ -60,8 +61,16 @@ const GameComponent = () => {
     return (
         <>
             <div className='flex flex-col gap-2'>
-                <div className='text-sm lg:text-xl text-emerald-900 dark:text-emerald-500 my-2'>
-                    {time > 0 ? <p>Game starting with {rounds} rounds and {players} players in {time}</p> : <ScoreComponent values={values} />}
+                <div className='text-sm lg:text-xl text-emerald-900 dark:text-emerald-500 lg:mt-8'>
+                    {
+                        time > 0
+                            ? <Whistle
+                                players={players}
+                                rounds={rounds}
+                                time={time}
+                            />
+                            : <ScoreComponent values={values} />
+                    }
                 </div>
                 <PlayerComponents players={players} />
             </div>

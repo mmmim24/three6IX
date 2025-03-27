@@ -8,7 +8,7 @@ const PlayerComponents = ({ players, rounds, starter, turn }) => {
         <>
             <div className='flex flex-col justify-center items-center'>
 
-                <div className='relative w-[500px] h-[500px] flex justify-center items-center'>
+                <div className='relative w-[360px] h-[400px] flex justify-center items-center'>
                     <button
                         disabled={values.isGameOver || !values.isYourTurn}
                         onClick={() => clap()}
