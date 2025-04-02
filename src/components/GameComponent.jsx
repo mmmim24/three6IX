@@ -61,7 +61,7 @@ const GameComponent = () => {
     return (
         <>
             <div className='flex flex-col gap-2'>
-                <div className='text-sm lg:text-xl text-emerald-900 dark:text-emerald-500 lg:mt-8'>
+                <div className='text-sm lg:text-xl text-emerald-500 lg:mt-8'>
                     {
                         time > 0
                             ? <Whistle

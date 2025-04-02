@@ -46,8 +46,8 @@ button {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #f0f8ff;
+    /* color: #213547;
+    background-color: #f0f8ff; */
   }
 
   /* a:hover {
