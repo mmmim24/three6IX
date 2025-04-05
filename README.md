@@ -50,7 +50,7 @@ three6IX
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/three6IX.git
+   git clone https://github.com/mmmim24/three6IX.git
    cd three6IX
    ```
 
