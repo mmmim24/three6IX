@@ -31,7 +31,7 @@ const Footer = () => {
         <>
             <div className="h-[10vh] flex flex-col lg:flex-row text-xs md:text-sm lg:text-md lg:gap-10 justify-center items-center border-t-4 border-emerald-900 text-emerald-500">
                 <p>3 6 9</p>
-                <a className='text-white hover:text-emerald-500 linear duration-500' href='https://www.github.com/mmmim24' target='_blank'>&copy; Mustaq Mujahid Mim </a>
+                <a className='text-white hover:text-emerald-500 linear duration-500' href='https://github.com/mmmim24/three6ix' target='_blank'>&copy; Mustaq Mujahid Mim </a>
                 <p>{dateTime}</p>
             </div>
         </>

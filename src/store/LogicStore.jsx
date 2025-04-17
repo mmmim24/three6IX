@@ -110,4 +110,4 @@ export const LogicProvider = ({ children }) => {
 }
 
 export default LogicProvider;
-export const useLogicContext = () => React.useContext(LogicContext);
+export const useLogicContext = () => React.use(LogicContext);

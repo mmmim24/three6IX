@@ -3,16 +3,42 @@ import character from '/character369.jpeg'
 import { GameContext } from '../store/GameStore';
 import { validate } from '../utils/validate';
 import HowToPLay from './HowToPLay';
+import { useSearchParams, useNavigate } from 'react-router-dom'
 
 const GameParams = () => {
     const { gameState, updateGameState } = React.useContext(GameContext);
-    const [roundsInput, setRoundsInput] = React.useState(gameState.rounds);
-    const [playersInput, setPlayersInput] = React.useState(gameState.players);
     const [error, setError] = React.useState(null);
+    const [searchParams, setSearchParams] = useSearchParams()
+    const navigate = useNavigate()
+
+    const initialRounds = searchParams.get('rounds')
+        ? Number(searchParams.get('rounds'))
+        : gameState.rounds
+    const initialPlayers = searchParams.get('players')
+        ? Number(searchParams.get('players'))
+        : gameState.players
+
+    const handleRoundsChange = (value) => {
+        const numValue = Number(value)
+        searchParams.set('rounds', numValue)
+        setSearchParams(searchParams)
+    }
+
+    const handlePlayersChange = (value) => {
+        const numValue = Number(value)
+        setSearchParams({
+            ...Object.fromEntries(searchParams),
+            players: numValue
+        });
+    }
 
     const handleStart = () => {
+        const roundsInput = Number(searchParams.get('rounds')) || gameState.rounds
+        const playersInput = Number(searchParams.get('players')) || gameState.players
+
         const validation = validate(roundsInput, playersInput);
         const audio = new Audio('/clap.mp3');
+
         if (validation) {
             updateGameState({
                 rounds: roundsInput,
@@ -20,6 +46,7 @@ const GameParams = () => {
                 isStarted: true
             });
             audio.play();
+            navigate('/game');
         } else {
             setError(
                 <div className='h-[50px] text-center'>
@@ -45,8 +72,8 @@ const GameParams = () => {
                                 type='number'
                                 id='round'
                                 min={13}
-                                value={roundsInput}
-                                onChange={(e) => setRoundsInput(Number(e.target.value))}
+                                value={searchParams.get('rounds') || initialRounds}
+                                onChange={(e) => handleRoundsChange(e.target.value)}
                                 className='p-1.5 lg:p-2 w-[50px] lg:w-[75px] rounded-md text-right bg-emerald-900 text-white border-emerald-500 box-border border-1 lg:border-2 focus:outline-0'
                             />
                         </div>
@@ -56,8 +83,8 @@ const GameParams = () => {
                                 type='number'
                                 id='player'
                                 min={4}
-                                value={playersInput}
-                                onChange={(e) => setPlayersInput(Number(e.target.value))}
+                                value={searchParams.get('players') || initialPlayers}
+                                onChange={(e) => handlePlayersChange(e.target.value)}
                                 className='p-1.5 lg:p-2 w-[50px] lg:w-[75px] rounded-md text-right bg-emerald-900 text-white border-emerald-500 box-border border-1 lg:border-2 focus:outline-0'
                             />
                         </div>

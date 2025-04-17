@@ -8,7 +8,7 @@ import Whistle from './Whistle';
 const GameComponent = () => {
     const game = React.useContext(GameContext);
     const { isStarted, players, rounds } = game.gameState;
-    const { values, updateValues, initialPlayer } = useLogicContext();
+    const { values, updateValues } = useLogicContext();
     const [time, setTime] = React.useState(5);
     const [running, setRunning] = React.useState(false);
 
